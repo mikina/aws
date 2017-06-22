@@ -9,35 +9,6 @@ import AEXML
 @_exported import enum AWSSignatureV4.AWSError
 @_exported import enum AWSSignatureV4.AccessControlList
 
-public struct S3File {
-    let path: String
-    let size: UInt64
-    let lastModified: Date
-    let ETag: String
-    
-    static func createFile(fromItem item: AEXMLElement) -> S3File? { //-> S3File
-        
-        guard let path = item["Key"].value,
-        let size = item["Size"].value,
-        let size64 = UInt64(size),
-        let lastModified = item["LastModified"].value,
-        let ETag = item["ETag"].value
-            else {
-            return nil
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        
-        guard let lastModifiedDate = dateFormatter.date(from: lastModified) else {
-            return nil
-        }
-        
-        return S3File(path: path, size: size64, lastModified: lastModifiedDate, ETag: ETag)
-    }
-}
-
 public struct S3 {
     public enum Error: Swift.Error {
         case unimplemented
