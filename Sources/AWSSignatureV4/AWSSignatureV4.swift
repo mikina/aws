@@ -22,8 +22,8 @@ public struct AWSSignatureV4 {
     }
     
     let service: String
-    let host: String
-    let region: String
+    public var host: String
+    public var region: String
     let accessKey: String
     let secretKey: String
     

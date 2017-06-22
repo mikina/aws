@@ -16,16 +16,38 @@ public struct S3 {
         case invalidData
     }
     
-    let signer: AWSSignatureV4
-    public var host: String
-    
+    var signer: AWSSignatureV4
+    private var _host : String
+    private var _region : Region
+  
+    public var host: String {
+      get {
+        return _host
+      }
+      set (newVal) {
+        _host = newVal
+        signer.host = newVal
+      }
+    }
+  
+    public var region: Region {
+      get {
+        return _region
+      }
+      set (newVal) {
+        _region = newVal
+        signer.region = newVal.rawValue
+      }
+    }
+  
     public init(
         host: String,
         accessKey: String,
         secretKey: String,
         region: Region
     ) {
-        self.host = host
+        _host = host
+        _region = region
         signer = AWSSignatureV4(
             service: "s3",
             host: host,
