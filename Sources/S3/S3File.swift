@@ -41,6 +41,13 @@ public struct S3File {
     
     return S3File(path: path, size: size64, lastModified: lastModifiedDate, ETag: ETag)
   }
+  
+  public init(path: String, size: UInt64, lastModified: Date, ETag: String) {
+    self.path = path
+    self.size = size
+    self.lastModified = lastModified
+    self.ETag = ETag
+  }
 }
 
 extension S3File: JSONRepresentable {
