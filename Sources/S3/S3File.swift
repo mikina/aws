@@ -15,10 +15,10 @@ import Foundation
 import AEXML
 
 public struct S3File {
-  let path: String
-  let size: UInt64
-  let lastModified: Date
-  let ETag: String
+  public let path: String
+  public let size: UInt64
+  public let lastModified: Date
+  public let ETag: String
   
   static func createFile(fromItem item: AEXMLElement) -> S3File? {
     
