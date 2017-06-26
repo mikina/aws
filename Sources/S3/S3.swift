@@ -9,7 +9,7 @@ import AEXML
 @_exported import enum AWSSignatureV4.AWSError
 @_exported import enum AWSSignatureV4.AccessControlList
 
-public struct S3 {
+public class S3 {
     public enum Error: Swift.Error {
         case unimplemented
         case invalidResponse(Status)
