@@ -94,7 +94,7 @@ open class S3 {
         throw Error.unimplemented
     }
     
-    public func listBucket(name: String, prefix: String, maxFiles: Int = 1000, getAllFiles: Bool = false) throws -> [S3File] {
+    open func listBucket(name: String, prefix: String, maxFiles: Int = 1000, getAllFiles: Bool = false) throws -> [S3File] {
       
         let items = try self.getItemsFromBucket(name: name, prefix: prefix, maxFiles: maxFiles, token: nil, getAllFiles: getAllFiles)
         return items.0
